@@ -80,7 +80,7 @@ export function PresetDialog({
   }) => (
     <Card className="group">
       <CardHeader className="pb-3">
-        <div className="flex items-center justify-between">
+        <div className="flex justify-between flex-col items-center">
           <CardTitle className="text-sm font-medium">{preset.name}</CardTitle>
           <div className="flex gap-1">
             <Button size="sm" variant="ghost" onClick={onLoad} className="gap-1">
@@ -101,7 +101,7 @@ export function PresetDialog({
         </div>
       </CardHeader>
       <CardContent className="pt-0">
-        <div className="flex flex-wrap gap-1">
+        <div className="flex flex-wrap flex-row items-center gap-1.5">
           {Object.entries(preset.tokens)
             .slice(0, 8)
             .map(([key, value]) => (
@@ -113,7 +113,7 @@ export function PresetDialog({
               />
             ))}
           {Object.keys(preset.tokens).length > 8 && (
-            <div className="w-4 h-4 rounded border border-border bg-muted flex items-center justify-center text-xs text-muted-foreground">
+            <div className="h-4 rounded border border-border bg-muted flex items-center justify-center text-xs text-muted-foreground w-9">
               +{Object.keys(preset.tokens).length - 8}
             </div>
           )}
@@ -146,7 +146,7 @@ export function PresetDialog({
                 Escolha um dos temas prontos para começar rapidamente
               </p>
             </div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 flex-col">
               {predefinedPresets.map((preset, index) => (
                 <PresetCard key={index} preset={preset} onLoad={() => handleLoadPreset(preset.tokens, preset.name)} />
               ))}

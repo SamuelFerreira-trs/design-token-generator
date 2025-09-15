@@ -9,6 +9,7 @@ import { TokenInput } from "@/components/token-input"
 import { PreviewSection } from "@/components/preview-section"
 import { ExportDialog } from "@/components/export-dialog"
 import { PresetDialog } from "@/components/preset-dialog"
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 
 const defaultTokens = {
   // Cores
@@ -276,68 +277,89 @@ export default function DesignTokenGenerator() {
       id: "colors",
       title: "Cores",
       icon: <Palette className="w-4 h-4" />,
-      tokens: [
-        "bg-primary",
-        "bg-section",
-        "bg-highlight",
-        "text-h1",
-        "text-h2",
-        "text-h3",
-        "text-h4",
-        "text-body-sm",
-        "text-body-base",
-        "text-body-lg",
-        "text-tagline-xs",
-        "text-tagline-sm",
-        "text-tagline-md",
-        "action-primary-default",
-        "action-primary-hover",
-        "action-disabled",
+      groups: [
+        {
+          title: "Backgrounds",
+          tokens: ["bg-primary", "bg-section", "bg-highlight"],
+        },
+        {
+          title: "Tipografia",
+          tokens: [
+            "text-h1",
+            "text-h2",
+            "text-h3",
+            "text-h4",
+            "text-body-sm",
+            "text-body-base",
+            "text-body-lg",
+            "text-tagline-xs",
+            "text-tagline-sm",
+            "text-tagline-md",
+          ],
+        },
+        {
+          title: "Botões",
+          tokens: ["action-primary-default", "action-primary-hover", "action-disabled"],
+        },
       ],
     },
     {
       id: "typography",
       title: "Tipografia",
       icon: <Type className="w-4 h-4" />,
-      tokens: [
-        "font-family-heading",
-        "font-h1-size",
-        "font-h1-height",
-        "font-h1-weight",
-        "font-h1-spacing",
-        "font-h2-size",
-        "font-h2-height",
-        "font-h2-weight",
-        "font-h2-spacing",
-        "font-h3-size",
-        "font-h3-height",
-        "font-h3-weight",
-        "font-h3-spacing",
-        "font-h4-size",
-        "font-h4-height",
-        "font-h4-weight",
-        "font-h4-spacing",
-        "font-body-sm-size",
-        "font-body-base-size",
-        "font-body-lg-size",
-        "font-tagline-xs-size",
-        "font-tagline-sm-size",
-        "font-tagline-md-size",
-        "font-url-heading",
+      groups: [
+        {
+          title: "Headings",
+          tokens: [
+            "font-family-heading",
+            "font-h1-size",
+            "font-h1-height",
+            "font-h1-weight",
+            "font-h1-spacing",
+            "font-h2-size",
+            "font-h2-height",
+            "font-h2-weight",
+            "font-h2-spacing",
+            "font-h3-size",
+            "font-h3-height",
+            "font-h3-weight",
+            "font-h3-spacing",
+            "font-h4-size",
+            "font-h4-height",
+            "font-h4-weight",
+            "font-h4-spacing",
+          ],
+        },
+        {
+          title: "Corpo e Taglines",
+          tokens: [
+            "font-body-sm-size",
+            "font-body-base-size",
+            "font-body-lg-size",
+            "font-tagline-xs-size",
+            "font-tagline-sm-size",
+            "font-tagline-md-size",
+          ],
+        },
+        {
+          title: "Recursos",
+          tokens: ["font-url-heading"],
+        },
       ],
     },
     {
       id: "visuals",
       title: "Visuais",
       icon: <Palette className="w-4 h-4" />,
-      tokens: [
-        "line-color-1",
-        "line-color-2",
-        "line-color-3",
-        "border-radius-1",
-        "border-radius-2",
-        "border-radius-3",
-        "border-radius-4",
+      groups: [
+        {
+          title: "Linhas",
+          tokens: ["line-color-1", "line-color-2", "line-color-3"],
+        },
+        {
+          title: "Bordas",
+          tokens: ["border-radius-1", "border-radius-2", "border-radius-3", "border-radius-4"],
+        },
       ],
     },
   ]
@@ -400,14 +422,25 @@ export default function DesignTokenGenerator() {
                       </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-4 mb-0">
-                      {category.tokens.map((tokenName) => (
-                        <TokenInput
-                          key={tokenName}
-                          tokenName={tokenName}
-                          value={tokens[tokenName]}
-                          onChange={(value) => updateToken(tokenName, value)}
-                        />
-                      ))}
+                      <Accordion type="multiple" className="w-full">
+                        {category.groups.map((group) => (
+                          <AccordionItem value={group.title} key={group.title}>
+                            <AccordionTrigger className="text-base font-semibold text-foreground">
+                              {group.title}
+                            </AccordionTrigger>
+                            <AccordionContent className="space-y-4 pt-4">
+                              {group.tokens.map((tokenName) => (
+                                <TokenInput
+                                  key={tokenName}
+                                  tokenName={tokenName}
+                                  value={tokens[tokenName]}
+                                  onChange={(value) => updateToken(tokenName, value)}
+                                />
+                              ))}
+                            </AccordionContent>
+                          </AccordionItem>
+                        ))}
+                      </Accordion>
                     </CardContent>
                   </Card>
                 </TabsContent>
