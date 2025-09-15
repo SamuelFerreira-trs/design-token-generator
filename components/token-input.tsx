@@ -34,7 +34,13 @@ export function TokenInput({ tokenName, value, onChange }: TokenInputProps) {
     return brightness > 128
   }
 
-  if (tokenName === "font-url-heading") {
+  const isColorToken =
+    !tokenName.includes("font-") && !tokenName.includes("line-") && !tokenName.includes("border-radius")
+  const placeholderText =
+    tokenName === "font-url-heading" ? "Cole o link de download da fonte" : "Ex: 16px, 1.5, 400, #000000"
+
+  // Lógica para renderizar apenas o input de texto para tokens que não são cores
+  if (!isColorToken) {
     return (
       <div className="space-y-2">
         <Label htmlFor={tokenName} className="text-sm font-medium">
@@ -44,13 +50,14 @@ export function TokenInput({ tokenName, value, onChange }: TokenInputProps) {
           id={tokenName}
           value={value}
           onChange={handleTextChange}
-          placeholder="Cole o link de download da fonte"
-          className="font-mono text-sm flex-1"
+          placeholder={placeholderText}
+          className="text-sm"
         />
       </div>
     )
   }
 
+  // Renderização padrão com seletor de cor para os outros tokens
   return (
     <div className="space-y-2">
       <Label htmlFor={tokenName} className="text-sm font-medium">
