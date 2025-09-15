@@ -420,7 +420,7 @@ export default function DesignTokenGenerator() {
               </div>
               <div>
                 <h1 className="text-xl font-bold text-foreground">Gerador de Design Tokens</h1>
-                <p className="text-sm text-muted-foreground">Para Landing Pages</p>
+                
               </div>
             </div>
             <div className="flex gap-2">
