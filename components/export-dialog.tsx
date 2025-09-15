@@ -19,7 +19,7 @@ export function ExportDialog({ open, onOpenChange, tokens }: ExportDialogProps) 
   const { toast } = useToast()
 
   const generateJSON = () => {
-    return JSON.stringify({ color: tokens }, null, 2)
+    return JSON.stringify({ designTokens: tokens }, null, 2)
   }
 
   const generateCSS = () => {
@@ -35,7 +35,7 @@ export function ExportDialog({ open, onOpenChange, tokens }: ExportDialogProps) 
       .map(([key, value]) => `    '${key}': '${value}',`)
       .join("\n")
 
-    return `export const theme = {\n  colors: {\n${themeObject}\n  }\n}`
+    return `export const theme = {\n  designTokens: {\n${themeObject}\n  }\n}`
   }
 
   const copyToClipboard = async (text: string, format: string) => {

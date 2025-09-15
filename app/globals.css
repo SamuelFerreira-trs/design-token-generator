@@ -1,5 +1,5 @@
-@import 'tailwindcss';
-@import 'tw-animate-css';
+@import "tailwindcss";
+@import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -37,6 +37,58 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+
+  /* Added comprehensive design token CSS variables */
+  --bg-primary: #0b0b0f;
+  --bg-section: #ffffff;
+  --bg-highlight: #f8fafc;
+  --text-h1: #ffffff;
+  --text-h2: #ffffff;
+  --text-h3: #ffffff;
+  --text-h4: #ffffff;
+  --text-body-sm: #374151;
+  --text-body-base: #374151;
+  --text-body-lg: #374151;
+  --text-tagline-xs: #6366f1;
+  --text-tagline-sm: #6366f1;
+  --text-tagline-md: #6366f1;
+  --action-primary-default: #6366f1;
+  --action-primary-hover: #4f46e5;
+  --action-disabled: #9ca3af;
+
+  /* Typography tokens */
+  --font-family-heading: sans-serif;
+  --font-h1-size: 3rem;
+  --font-h1-height: 1.2;
+  --font-h1-weight: 700;
+  --font-h1-spacing: -0.02em;
+  --font-h2-size: 2.5rem;
+  --font-h2-height: 1.2;
+  --font-h2-weight: 700;
+  --font-h2-spacing: -0.02em;
+  --font-h3-size: 2rem;
+  --font-h3-height: 1.3;
+  --font-h3-weight: 600;
+  --font-h3-spacing: -0.01em;
+  --font-h4-size: 1.5rem;
+  --font-h4-height: 1.4;
+  --font-h4-weight: 500;
+  --font-h4-spacing: 0;
+  --font-body-sm-size: 0.875rem;
+  --font-body-base-size: 1rem;
+  --font-body-lg-size: 1.125rem;
+  --font-tagline-xs-size: 0.75rem;
+  --font-tagline-sm-size: 0.875rem;
+  --font-tagline-md-size: 1rem;
+
+  /* Visual tokens */
+  --line-color-1: #d1d5db;
+  --line-color-2: #e5e7eb;
+  --line-color-3: #9ca3af;
+  --border-radius-1: 0.25rem;
+  --border-radius-2: 0.5rem;
+  --border-radius-3: 0.75rem;
+  --border-radius-4: 1rem;
 }
 
 .dark {
@@ -72,6 +124,58 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(0.269 0 0);
   --sidebar-ring: oklch(0.439 0 0);
+
+  /* Added dark theme variants for comprehensive design tokens */
+  --bg-primary: #0b0b0f;
+  --bg-section: #1f2937;
+  --bg-highlight: #374151;
+  --text-h1: #ffffff;
+  --text-h2: #ffffff;
+  --text-h3: #ffffff;
+  --text-h4: #ffffff;
+  --text-body-sm: #e5e7eb;
+  --text-body-base: #e5e7eb;
+  --text-body-lg: #e5e7eb;
+  --text-tagline-xs: #60a5fa;
+  --text-tagline-sm: #60a5fa;
+  --text-tagline-md: #60a5fa;
+  --action-primary-default: #3b82f6;
+  --action-primary-hover: #2563eb;
+  --action-disabled: #6b7280;
+
+  /* Typography tokens (same for dark theme) */
+  --font-family-heading: sans-serif;
+  --font-h1-size: 3rem;
+  --font-h1-height: 1.2;
+  --font-h1-weight: 700;
+  --font-h1-spacing: -0.02em;
+  --font-h2-size: 2.5rem;
+  --font-h2-height: 1.2;
+  --font-h2-weight: 700;
+  --font-h2-spacing: -0.02em;
+  --font-h3-size: 2rem;
+  --font-h3-height: 1.3;
+  --font-h3-weight: 600;
+  --font-h3-spacing: -0.01em;
+  --font-h4-size: 1.5rem;
+  --font-h4-height: 1.4;
+  --font-h4-weight: 500;
+  --font-h4-spacing: 0;
+  --font-body-sm-size: 0.875rem;
+  --font-body-base-size: 1rem;
+  --font-body-lg-size: 1.125rem;
+  --font-tagline-xs-size: 0.75rem;
+  --font-tagline-sm-size: 0.875rem;
+  --font-tagline-md-size: 1rem;
+
+  /* Visual tokens for dark theme */
+  --line-color-1: #6b7280;
+  --line-color-2: #4b5563;
+  --line-color-3: #e5e7eb;
+  --border-radius-1: 0.25rem;
+  --border-radius-2: 0.5rem;
+  --border-radius-3: 0.75rem;
+  --border-radius-4: 1rem;
 }
 
 @theme inline {
@@ -113,6 +217,53 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Added Tailwind theme mappings for comprehensive design tokens */
+  --color-text-h1: var(--text-h1);
+  --color-text-h2: var(--text-h2);
+  --color-text-h3: var(--text-h3);
+  --color-text-h4: var(--text-h4);
+  --color-text-body-sm: var(--text-body-sm);
+  --color-text-body-base: var(--text-body-base);
+  --color-text-body-lg: var(--text-body-lg);
+  --color-text-tagline-xs: var(--text-tagline-xs);
+  --color-text-tagline-sm: var(--text-tagline-sm);
+  --color-text-tagline-md: var(--text-tagline-md);
+  --color-action-primary-default: var(--action-primary-default);
+  --color-action-primary-hover: var(--action-primary-hover);
+  --color-action-disabled: var(--action-disabled);
+
+  --font-family-heading: var(--font-family-heading);
+  --font-h1-size: var(--font-h1-size);
+  --font-h1-height: var(--font-h1-height);
+  --font-h1-weight: var(--font-h1-weight);
+  --font-h1-spacing: var(--font-h1-spacing);
+  --font-h2-size: var(--font-h2-size);
+  --font-h2-height: var(--font-h2-height);
+  --font-h2-weight: var(--font-h2-weight);
+  --font-h2-spacing: var(--font-h2-spacing);
+  --font-h3-size: var(--font-h3-size);
+  --font-h3-height: var(--font-h3-height);
+  --font-h3-weight: var(--font-h3-weight);
+  --font-h3-spacing: var(--font-h3-spacing);
+  --font-h4-size: var(--font-h4-size);
+  --font-h4-height: var(--font-h4-height);
+  --font-h4-weight: var(--font-h4-weight);
+  --font-h4-spacing: var(--font-h4-spacing);
+  --font-body-sm-size: var(--font-body-sm-size);
+  --font-body-base-size: var(--font-body-base-size);
+  --font-body-lg-size: var(--font-body-lg-size);
+  --font-tagline-xs-size: var(--font-tagline-xs-size);
+  --font-tagline-sm-size: var(--font-tagline-sm-size);
+  --font-tagline-md-size: var(--font-tagline-md-size);
+
+  --color-line-1: var(--line-color-1);
+  --color-line-2: var(--line-color-2);
+  --color-line-3: var(--line-color-3);
+  --border-radius-1: var(--border-radius-1);
+  --border-radius-2: var(--border-radius-2);
+  --border-radius-3: var(--border-radius-3);
+  --border-radius-4: var(--border-radius-4);
 }
 
 @layer base {
