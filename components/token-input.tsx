@@ -34,6 +34,23 @@ export function TokenInput({ tokenName, value, onChange }: TokenInputProps) {
     return brightness > 128
   }
 
+  if (tokenName === "font-url-heading") {
+    return (
+      <div className="space-y-2">
+        <Label htmlFor={tokenName} className="text-sm font-medium">
+          {tokenName}
+        </Label>
+        <Input
+          id={tokenName}
+          value={value}
+          onChange={handleTextChange}
+          placeholder="Cole o link de download da fonte"
+          className="font-mono text-sm flex-1"
+        />
+      </div>
+    )
+  }
+
   return (
     <div className="space-y-2">
       <Label htmlFor={tokenName} className="text-sm font-medium">
