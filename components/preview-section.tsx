@@ -70,7 +70,7 @@ export function PreviewSection({ tokens }: PreviewSectionProps) {
               </div>
 
               <div
-                className="p-4 rounded-lg border"
+                className="p-4 rounded-lg border justify-start gap-0 py-4"
                 style={{
                   backgroundColor: tokens["card-background"],
                   borderColor: tokens["card-border"],
@@ -82,7 +82,7 @@ export function PreviewSection({ tokens }: PreviewSectionProps) {
                 <p className="text-sm mb-4" style={{ color: tokens["text-muted"] }}>
                   Mais conteúdo de exemplo para demonstrar a consistência.
                 </p>
-                <div className="w-full h-1 rounded" style={{ backgroundColor: tokens["line-color"] }} />
+                <div className="w-full rounded h-0.5" style={{ backgroundColor: tokens["line-color"] }} />
               </div>
             </div>
           </div>
