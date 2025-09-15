@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Download, Palette, Type, FolderOpen } from "lucide-react"
+import { Download, Type, FolderOpen } from "lucide-react"
 import { TokenInput } from "@/components/token-input"
 import { PreviewSection } from "@/components/preview-section"
 import { ExportDialog } from "@/components/export-dialog"
@@ -276,7 +276,20 @@ export default function DesignTokenGenerator() {
     {
       id: "colors",
       title: "Cores",
-      icon: <Palette className="w-4 h-4" />,
+      icon: (
+        <svg width="16" height="12" viewBox="0 0 26 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="0.75" y="0.25" width="24.5" height="19.5" rx="2.25" fill="white" />
+          <rect x="0.75" y="0.25" width="24.5" height="19.5" rx="2.25" stroke="#C4C4CC" strokeWidth="0.5" />
+          <path
+            d="M13.6644 13.435C10.2965 16.3122 7.90493 16.5151 6.68016 15.2893C5.55167 14.1608 6.48759 11.3303 8.76838 8.53492L4.43457 4.20215H7.20403L11.5088 8.50697C8.79219 11.2402 7.20817 14.1504 8.0271 14.9694C8.70523 15.6485 10.7924 14.7074 13.0442 12.8149L13.6644 13.435Z"
+            fill="#B585FB"
+          />
+          <path
+            d="M21.5648 15.7976H18.7954L14.4905 11.4927C17.2072 8.76054 18.7912 5.84925 17.9733 5.03136C17.2952 4.35219 15.2059 5.29433 12.9541 7.18688L12.334 6.56673C15.7029 3.68856 18.0955 3.4846 19.3203 4.71041C20.4487 5.8389 19.5139 8.66944 17.232 11.4648L21.5658 15.7976H21.5648Z"
+            fill="#B585FB"
+          />
+        </svg>
+      ),
       groups: [
         {
           title: "Backgrounds",
@@ -350,7 +363,20 @@ export default function DesignTokenGenerator() {
     {
       id: "visuals",
       title: "Visuais",
-      icon: <Palette className="w-4 h-4" />,
+      icon: (
+        <svg width="16" height="12" viewBox="0 0 26 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="0.75" y="0.25" width="24.5" height="19.5" rx="2.25" fill="white" />
+          <rect x="0.75" y="0.25" width="24.5" height="19.5" rx="2.25" stroke="#C4C4CC" strokeWidth="0.5" />
+          <path
+            d="M13.6644 13.435C10.2965 16.3122 7.90493 16.5151 6.68016 15.2893C5.55167 14.1608 6.48759 11.3303 8.76838 8.53492L4.43457 4.20215H7.20403L11.5088 8.50697C8.79219 11.2402 7.20817 14.1504 8.0271 14.9694C8.70523 15.6485 10.7924 14.7074 13.0442 12.8149L13.6644 13.435Z"
+            fill="#B585FB"
+          />
+          <path
+            d="M21.5648 15.7976H18.7954L14.4905 11.4927C17.2072 8.76054 18.7912 5.84925 17.9733 5.03136C17.2952 4.35219 15.2059 5.29433 12.9541 7.18688L12.334 6.56673C15.7029 3.68856 18.0955 3.4846 19.3203 4.71041C20.4487 5.8389 19.5139 8.66944 17.232 11.4648L21.5658 15.7976H21.5648Z"
+            fill="#B585FB"
+          />
+        </svg>
+      ),
       groups: [
         {
           title: "Linhas",
@@ -371,8 +397,19 @@ export default function DesignTokenGenerator() {
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                <Palette className="w-4 h-4 text-primary-foreground" />
+              <div className="w-8 h-8 flex items-center justify-center">
+                <svg width="26" height="20" viewBox="0 0 26 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="0.75" y="0.25" width="24.5" height="19.5" rx="2.25" fill="white" />
+                  <rect x="0.75" y="0.25" width="24.5" height="19.5" rx="2.25" stroke="#C4C4CC" strokeWidth="0.5" />
+                  <path
+                    d="M13.6644 13.435C10.2965 16.3122 7.90493 16.5151 6.68016 15.2893C5.55167 14.1608 6.48759 11.3303 8.76838 8.53492L4.43457 4.20215H7.20403L11.5088 8.50697C8.79219 11.2402 7.20817 14.1504 8.0271 14.9694C8.70523 15.6485 10.7924 14.7074 13.0442 12.8149L13.6644 13.435Z"
+                    fill="#B585FB"
+                  />
+                  <path
+                    d="M21.5648 15.7976H18.7954L14.4905 11.4927C17.2072 8.76054 18.7912 5.84925 17.9733 5.03136C17.2952 4.35219 15.2059 5.29433 12.9541 7.18688L12.334 6.56673C15.7029 3.68856 18.0955 3.4846 19.3203 4.71041C20.4487 5.8389 19.5139 8.66944 17.232 11.4648L21.5658 15.7976H21.5648Z"
+                    fill="#B585FB"
+                  />
+                </svg>
               </div>
               <div>
                 <h1 className="text-xl font-bold text-foreground">Gerador de Design Tokens</h1>
