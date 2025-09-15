@@ -35,12 +35,17 @@ export function TokenInput({ tokenName, value, onChange }: TokenInputProps) {
   }
 
   const isColorToken =
-    !tokenName.includes("font-") && !tokenName.includes("line-") && !tokenName.includes("border-radius")
-  const placeholderText =
-    tokenName === "font-url-heading" ? "Cole o link de download da fonte" : "Ex: 16px, 1.5, 400, #000000"
+    tokenName.includes("bg-") ||
+    tokenName.includes("text-") ||
+    tokenName.includes("action-") ||
+    tokenName.includes("line-color")
 
-  // Lógica para renderizar apenas o input de texto para tokens que não são cores
-  if (!isColorToken) {
+  const isTypographyToken = tokenName.includes("font-")
+
+  const placeholderText = tokenName.includes("url") ? "Cole o link de download da fonte" : "Ex: 16px, 1.5, 400"
+
+  // Se o token for de tipografia, renderiza apenas o input de texto
+  if (isTypographyToken) {
     return (
       <div className="space-y-2">
         <Label htmlFor={tokenName} className="text-sm font-medium">
@@ -64,51 +69,53 @@ export function TokenInput({ tokenName, value, onChange }: TokenInputProps) {
         {tokenName}
       </Label>
       <div className="flex gap-2">
-        <Popover open={isOpen} onOpenChange={setIsOpen}>
-          <PopoverTrigger asChild>
-            <Button
-              variant="outline"
-              size="sm"
-              className="w-12 h-10 p-0 border-2 relative overflow-hidden bg-transparent"
-              style={{ backgroundColor: value }}
-              aria-label={`Escolher cor para ${tokenName}`}
-            ></Button>
-          </PopoverTrigger>
-          <PopoverContent className="w-64 p-4">
-            <div className="space-y-4">
-              <div>
-                <Label htmlFor={`${tokenName}-picker`} className="text-sm font-medium">
-                  Seletor de Cor
-                </Label>
-                <input
-                  id={`${tokenName}-picker`}
-                  type="color"
-                  value={value}
-                  onChange={handleColorChange}
-                  className="w-full h-10 rounded border border-input cursor-pointer"
-                />
+        {isColorToken && (
+          <Popover open={isOpen} onOpenChange={setIsOpen}>
+            <PopoverTrigger asChild>
+              <Button
+                variant="outline"
+                size="sm"
+                className="w-12 h-10 p-0 border-2 relative overflow-hidden bg-transparent"
+                style={{ backgroundColor: value }}
+                aria-label={`Escolher cor para ${tokenName}`}
+              ></Button>
+            </PopoverTrigger>
+            <PopoverContent className="w-64 p-4">
+              <div className="space-y-4">
+                <div>
+                  <Label htmlFor={`${tokenName}-picker`} className="text-sm font-medium">
+                    Seletor de Cor
+                  </Label>
+                  <input
+                    id={`${tokenName}-picker`}
+                    type="color"
+                    value={value}
+                    onChange={handleColorChange}
+                    className="w-full h-10 rounded border border-input cursor-pointer"
+                  />
+                </div>
+                <div>
+                  <Label htmlFor={`${tokenName}-text`} className="text-sm font-medium">
+                    Valor Hex/RGB
+                  </Label>
+                  <Input
+                    id={`${tokenName}-text`}
+                    value={value}
+                    onChange={handleTextChange}
+                    placeholder="#000000"
+                    className="font-mono text-sm"
+                  />
+                </div>
               </div>
-              <div>
-                <Label htmlFor={`${tokenName}-text`} className="text-sm font-medium">
-                  Valor Hex/RGB
-                </Label>
-                <Input
-                  id={`${tokenName}-text`}
-                  value={value}
-                  onChange={handleTextChange}
-                  placeholder="#000000"
-                  className="font-mono text-sm"
-                />
-              </div>
-            </div>
-          </PopoverContent>
-        </Popover>
+            </PopoverContent>
+          </Popover>
+        )}
         <Input
           id={tokenName}
           value={value}
           onChange={handleTextChange}
-          placeholder="#000000"
-          className="font-mono text-sm flex-1"
+          placeholder={isColorToken ? "#000000" : placeholderText}
+          className={`text-sm ${isColorToken ? "font-mono flex-1" : "flex-1"}`}
         />
       </div>
     </div>
