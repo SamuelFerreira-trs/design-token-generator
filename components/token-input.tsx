@@ -114,15 +114,7 @@ export function TokenInput({ tokenName, value, onChange }: TokenInputProps) {
     <div className="space-y-2">
       <Label htmlFor={tokenName} className="text-sm font-medium flex items-center gap-2">
         {isColorToken && (
-          <div className="w-4 h-4 rounded border border-border" style={{ backgroundColor: value || "#000000" }} />
-        )}
-        {tokenName}
-      </Label>
-      <div className="flex gap-2">
-        {isColorToken && (
-          <Popover open={isOpen} onOpenChange={setIsOpen}>
-            <PopoverTrigger asChild>
-              <Button
+                     <Button
                 variant="outline"
                 size="sm"
                 className="w-12 h-10 p-0 border-2 relative overflow-hidden bg-transparent"
