@@ -17,16 +17,13 @@ export function PreviewSection({ tokens }: PreviewSectionProps) {
           Título Principal
         </h1>
         <p className="mt-4 text-(--text-tagline-md) text-(--font-tagline-md-size)">Subtítulo da sua landing page</p>
-        <Button
-          className="mt-6 text-white bg-(--action-primary-default) hover:bg-(--action-primary-hover)"
-          style={{ borderRadius: tokens["border-radius-2"] }}
-        >
+        <Button className="mt-6 text-white bg-(--action-primary-default) hover:bg-(--action-primary-hover) rounded-(--border-radius-2)">
           Call to Action
         </Button>
       </div>
 
       {/* Typography Preview */}
-      <Card style={{ borderRadius: tokens["border-radius-3"] }}>
+      <Card className="rounded-(--border-radius-3)">
         <CardHeader>
           <CardTitle>Tipografia</CardTitle>
         </CardHeader>
@@ -51,7 +48,7 @@ export function PreviewSection({ tokens }: PreviewSectionProps) {
       </Card>
 
       {/* Visuals Preview */}
-      <Card style={{ borderRadius: tokens["border-radius-4"] }}>
+      <Card className="rounded-(--border-radius-4)">
         <CardHeader>
           <CardTitle>Visuais</CardTitle>
         </CardHeader>
@@ -68,10 +65,10 @@ export function PreviewSection({ tokens }: PreviewSectionProps) {
             </div>
           </div>
           <div className="flex gap-2 mt-4">
-            <Badge style={{ borderRadius: tokens["border-radius-1"] }}>Radius 1</Badge>
-            <Badge style={{ borderRadius: tokens["border-radius-2"] }}>Radius 2</Badge>
-            <Badge style={{ borderRadius: tokens["border-radius-3"] }}>Radius 3</Badge>
-            <Badge style={{ borderRadius: tokens["border-radius-4"] }}>Radius 4</Badge>
+            <Badge className="rounded-(--border-radius-1)">Radius 1</Badge>
+            <Badge className="rounded-(--border-radius-2)">Radius 2</Badge>
+            <Badge className="rounded-(--border-radius-3)">Radius 3</Badge>
+            <Badge className="rounded-(--border-radius-4)">Radius 4</Badge>
           </div>
         </CardContent>
       </Card>
@@ -83,16 +80,11 @@ export function PreviewSection({ tokens }: PreviewSectionProps) {
         </CardHeader>
         <CardContent>
           <div className="flex flex-wrap gap-4">
-            <Button
-              className="bg-(--action-primary-default) hover:bg-(--action-primary-hover)"
-              style={{ borderRadius: tokens["border-radius-2"] }}
-            >
+            <Button className="bg-(--action-primary-default) hover:bg-(--action-primary-hover) rounded-(--border-radius-2)">
               Primário
             </Button>
-            <Button className="bg-(--action-primary-hover)" style={{ borderRadius: tokens["border-radius-2"] }}>
-              Hover
-            </Button>
-            <Button disabled className="bg-(--action-disabled)" style={{ borderRadius: tokens["border-radius-2"] }}>
+            <Button className="bg-(--action-primary-hover) rounded-(--border-radius-2)">Hover</Button>
+            <Button disabled className="bg-(--action-disabled) rounded-(--border-radius-2)">
               Desabilitado
             </Button>
           </div>
