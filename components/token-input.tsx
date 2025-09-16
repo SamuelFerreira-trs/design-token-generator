@@ -65,27 +65,44 @@ export function TokenInput({ tokenName, value, onChange }: TokenInputProps) {
     return (
       <div className="space-y-3 p-3 border rounded-lg bg-muted/30">
         <Label htmlFor={tokenName} className="text-sm font-medium flex items-center gap-2">
-          <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+          {isColorToken ? (
+            <div className="w-4 h-4 rounded border border-border" style={{ backgroundColor: value || "#000000" }} />
+          ) : (
+            <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+          )}
           {tokenName}
         </Label>
         <Input
           id={tokenName}
           value={value}
           onChange={handleTextChange}
-          placeholder={getPlaceholderText()}
-          className="text-sm font-mono"
+          placeholder={isColorToken ? "#000000" : getPlaceholderText()}
+          className={`text-sm ${isColorToken ? "font-mono" : "font-mono"}`}
         />
         {value && (
           <div className="text-xs text-muted-foreground p-2 bg-background rounded border">
-            Preview:{" "}
-            <span
-              style={{
-                [tokenName.includes("size") ? "fontSize" : tokenName.includes("weight") ? "fontWeight" : "fontFamily"]:
-                  value,
-              }}
-            >
-              {value}
-            </span>
+            {isColorToken ? (
+              <div className="flex items-center gap-2">
+                <span>Preview:</span>
+                <div className="w-6 h-4 rounded border border-border" style={{ backgroundColor: value }} />
+                <span className="font-mono">{value}</span>
+              </div>
+            ) : (
+              <>
+                Preview:{" "}
+                <span
+                  style={{
+                    [tokenName.includes("size")
+                      ? "fontSize"
+                      : tokenName.includes("weight")
+                        ? "fontWeight"
+                        : "fontFamily"]: value,
+                  }}
+                >
+                  {value}
+                </span>
+              </>
+            )}
           </div>
         )}
       </div>
