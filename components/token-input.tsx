@@ -1,8 +1,7 @@
 "use client"
 
 import type React from "react"
-
-import { useState } from "react"
+import { useState, useMemo } from "react"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Button } from "@/components/ui/button"
@@ -14,8 +13,19 @@ interface TokenInputProps {
   onChange: (value: string) => void
 }
 
+const isColorToken = (tokenName: string) => {
+  // Check for common color-related prefixes
+  return (
+    tokenName.startsWith("bg-") ||
+    tokenName.startsWith("text-") ||
+    tokenName.startsWith("action-") ||
+    tokenName.startsWith("line-color")
+  )
+}
+
 export function TokenInput({ tokenName, value, onChange }: TokenInputProps) {
   const [isOpen, setIsOpen] = useState(false)
+  const isColor = useMemo(() => isColorToken(tokenName), [tokenName])
 
   const handleColorChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     onChange(e.target.value)
@@ -25,103 +35,14 @@ export function TokenInput({ tokenName, value, onChange }: TokenInputProps) {
     onChange(e.target.value)
   }
 
-  const isLightColor = (color: string) => {
-    const hex = color.replace("#", "")
-    const r = Number.parseInt(hex.substr(0, 2), 16)
-    const g = Number.parseInt(hex.substr(2, 2), 16)
-    const b = Number.parseInt(hex.substr(4, 2), 16)
-    const brightness = (r * 299 + g * 587 + b * 114) / 1000
-    return brightness > 128
-  }
-
-  const isColorToken =
-    tokenName.includes("bg-") ||
-    tokenName.includes("text-") ||
-    tokenName.includes("action-") ||
-    tokenName.includes("line-color")
-
-  const isTypographyToken =
-    tokenName.includes("font-") ||
-    tokenName.includes("text-") ||
-    tokenName.includes("heading-") ||
-    tokenName.includes("body-") ||
-    tokenName.includes("size") ||
-    tokenName.includes("weight") ||
-    tokenName.includes("height") ||
-    tokenName.includes("spacing")
-
-  const getPlaceholderText = () => {
-    if (tokenName.includes("url")) return "Cole o link de download da fonte"
-    if (tokenName.includes("size")) return "Ex: 16px, 1.2rem, 14px"
-    if (tokenName.includes("weight")) return "Ex: 400, 500, 600, bold"
-    if (tokenName.includes("height")) return "Ex: 1.5, 1.2, 24px"
-    if (tokenName.includes("spacing")) return "Ex: 0.1em, 2px, normal"
-    if (tokenName.includes("family")) return "Ex: Inter, Arial, sans-serif"
-    return "Ex: 16px, 1.5, 400"
-  }
-
-  // Se o token for de tipografia, renderiza apenas o input de texto
-  if (isTypographyToken) {
+  // Se o token for uma cor, renderiza o seletor de cor e o input de texto
+  if (isColor) {
     return (
-      <div className="space-y-3 p-3 border rounded-lg bg-muted/30">
-        <Label htmlFor={tokenName} className="text-sm font-medium flex items-center gap-3">
-          {isColorToken ? (
-            <div
-              className="w-6 h-6 rounded border border-border shadow-sm"
-              style={{ backgroundColor: value || "#6366F1" }}
-            />
-          ) : (
-            <div className="w-6 h-6 bg-blue-500 rounded shadow-sm flex items-center justify-center">
-              <span className="text-white text-xs font-bold">T</span>
-            </div>
-          )}
-          <span className="text-foreground">{tokenName}</span>
+      <div className="space-y-2">
+        <Label htmlFor={tokenName} className="text-sm font-medium">
+          {tokenName}
         </Label>
-        <Input
-          id={tokenName}
-          value={value}
-          onChange={handleTextChange}
-          placeholder={isColorToken ? "#6366F1" : getPlaceholderText()}
-          className={`text-sm ${isColorToken ? "font-mono" : "font-mono"} bg-background`}
-        />
-        {value && (
-          <div className="text-xs text-muted-foreground p-2 bg-background rounded border">
-            {isColorToken ? (
-              <div className="flex items-center gap-2">
-                <span>Preview:</span>
-                <div className="w-6 h-4 rounded border border-border" style={{ backgroundColor: value }} />
-                <span className="font-mono">{value}</span>
-              </div>
-            ) : (
-              <>
-                Preview:{" "}
-                <span
-                  style={{
-                    [tokenName.includes("size")
-                      ? "fontSize"
-                      : tokenName.includes("weight")
-                        ? "fontWeight"
-                        : "fontFamily"]: value,
-                  }}
-                >
-                  {value}
-                </span>
-              </>
-            )}
-          </div>
-        )}
-      </div>
-    )
-  }
-
-  // Renderização padrão com seletor de cor para os outros tokens
-  return (
-    <div className="space-y-2">
-      <Label htmlFor={tokenName} className="text-sm font-medium">
-        {tokenName}
-      </Label>
-      <div className="flex gap-2">
-        {isColorToken && (
+        <div className="flex gap-2">
           <Popover open={isOpen} onOpenChange={setIsOpen}>
             <PopoverTrigger asChild>
               <Button
@@ -161,15 +82,31 @@ export function TokenInput({ tokenName, value, onChange }: TokenInputProps) {
               </div>
             </PopoverContent>
           </Popover>
-        )}
-        <Input
-          id={tokenName}
-          value={value}
-          onChange={handleTextChange}
-          placeholder={isColorToken ? "#6366F1" : getPlaceholderText()}
-          className={`text-sm ${isColorToken ? "font-mono flex-1" : "flex-1"}`}
-        />
+          <Input
+            id={tokenName}
+            value={value}
+            onChange={handleTextChange}
+            placeholder="#000000"
+            className="font-mono text-sm flex-1"
+          />
+        </div>
       </div>
+    )
+  }
+
+  // Caso contrário, renderiza apenas o input de texto
+  return (
+    <div className="space-y-2">
+      <Label htmlFor={tokenName} className="text-sm font-medium">
+        {tokenName}
+      </Label>
+      <Input
+        id={tokenName}
+        value={value}
+        onChange={handleTextChange}
+        placeholder="Ex: 1rem"
+        className="font-mono text-sm"
+      />
     </div>
   )
 }
