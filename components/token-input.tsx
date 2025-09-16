@@ -40,24 +40,54 @@ export function TokenInput({ tokenName, value, onChange }: TokenInputProps) {
     tokenName.includes("action-") ||
     tokenName.includes("line-color")
 
-  const isTypographyToken = tokenName.includes("font-")
+  const isTypographyToken =
+    tokenName.includes("font-") ||
+    tokenName.includes("text-") ||
+    tokenName.includes("heading-") ||
+    tokenName.includes("body-") ||
+    tokenName.includes("size") ||
+    tokenName.includes("weight") ||
+    tokenName.includes("height") ||
+    tokenName.includes("spacing")
 
-  const placeholderText = tokenName.includes("url") ? "Cole o link de download da fonte" : "Ex: 16px, 1.5, 400"
+  const getPlaceholderText = () => {
+    if (tokenName.includes("url")) return "Cole o link de download da fonte"
+    if (tokenName.includes("size")) return "Ex: 16px, 1.2rem, 14px"
+    if (tokenName.includes("weight")) return "Ex: 400, 500, 600, bold"
+    if (tokenName.includes("height")) return "Ex: 1.5, 1.2, 24px"
+    if (tokenName.includes("spacing")) return "Ex: 0.1em, 2px, normal"
+    if (tokenName.includes("family")) return "Ex: Inter, Arial, sans-serif"
+    return "Ex: 16px, 1.5, 400"
+  }
 
   // Se o token for de tipografia, renderiza apenas o input de texto
   if (isTypographyToken) {
     return (
-      <div className="space-y-2">
-        <Label htmlFor={tokenName} className="text-sm font-medium">
+      <div className="space-y-3 p-3 border rounded-lg bg-muted/30">
+        <Label htmlFor={tokenName} className="text-sm font-medium flex items-center gap-2">
+          <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
           {tokenName}
         </Label>
         <Input
           id={tokenName}
           value={value}
           onChange={handleTextChange}
-          placeholder={placeholderText}
-          className="text-sm"
+          placeholder={getPlaceholderText()}
+          className="text-sm font-mono"
         />
+        {value && (
+          <div className="text-xs text-muted-foreground p-2 bg-background rounded border">
+            Preview:{" "}
+            <span
+              style={{
+                [tokenName.includes("size") ? "fontSize" : tokenName.includes("weight") ? "fontWeight" : "fontFamily"]:
+                  value,
+              }}
+            >
+              {value}
+            </span>
+          </div>
+        )}
       </div>
     )
   }
@@ -114,7 +144,7 @@ export function TokenInput({ tokenName, value, onChange }: TokenInputProps) {
           id={tokenName}
           value={value}
           onChange={handleTextChange}
-          placeholder={isColorToken ? "#000000" : placeholderText}
+          placeholder={isColorToken ? "#000000" : getPlaceholderText()}
           className={`text-sm ${isColorToken ? "font-mono flex-1" : "flex-1"}`}
         />
       </div>
