@@ -284,7 +284,7 @@ export default function DesignTokenGenerator() {
                 <FolderOpen className="w-4 h-4" />
                 Presets
               </Button>
-              <Button onClick={() => setExportDialogOpen(true)} className="gap-2">
+              <Button onClick={() => setExportDialogOpen(true)} className="gap-2 text-white">
                 <Download className="w-4 h-4" />
                 Gerar Códigos
               </Button>
