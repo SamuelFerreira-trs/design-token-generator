@@ -112,9 +112,14 @@ export function TokenInput({ tokenName, value, onChange }: TokenInputProps) {
   // Renderização padrão com seletor de cor para os outros tokens
   return (
     <div className="space-y-2">
-      <Label htmlFor={tokenName} className="text-sm font-medium flex items-center gap-2">
+      <Label htmlFor={tokenName} className="text-sm font-medium">
+        {tokenName}
+      </Label>
+      <div className="flex gap-2">
         {isColorToken && (
-                     <Button
+          <Popover open={isOpen} onOpenChange={setIsOpen}>
+            <PopoverTrigger asChild>
+              <Button
                 variant="outline"
                 size="sm"
                 className="w-12 h-10 p-0 border-2 relative overflow-hidden bg-transparent"
@@ -160,15 +165,6 @@ export function TokenInput({ tokenName, value, onChange }: TokenInputProps) {
           className={`text-sm ${isColorToken ? "font-mono flex-1" : "flex-1"}`}
         />
       </div>
-      {isColorToken && value && (
-        <div className="text-xs text-muted-foreground p-2 bg-background rounded border">
-          <div className="flex items-center gap-2">
-            <span>Preview:</span>
-            <div className="w-6 h-4 rounded border border-border" style={{ backgroundColor: value }} />
-            <span className="font-mono">{value}</span>
-          </div>
-        </div>
-      )}
     </div>
   )
 }
