@@ -112,7 +112,10 @@ export function TokenInput({ tokenName, value, onChange }: TokenInputProps) {
   // Renderização padrão com seletor de cor para os outros tokens
   return (
     <div className="space-y-2">
-      <Label htmlFor={tokenName} className="text-sm font-medium">
+      <Label htmlFor={tokenName} className="text-sm font-medium flex items-center gap-2">
+        {isColorToken && (
+          <div className="w-4 h-4 rounded border border-border" style={{ backgroundColor: value || "#000000" }} />
+        )}
         {tokenName}
       </Label>
       <div className="flex gap-2">
@@ -165,6 +168,15 @@ export function TokenInput({ tokenName, value, onChange }: TokenInputProps) {
           className={`text-sm ${isColorToken ? "font-mono flex-1" : "flex-1"}`}
         />
       </div>
+      {isColorToken && value && (
+        <div className="text-xs text-muted-foreground p-2 bg-background rounded border">
+          <div className="flex items-center gap-2">
+            <span>Preview:</span>
+            <div className="w-6 h-4 rounded border border-border" style={{ backgroundColor: value }} />
+            <span className="font-mono">{value}</span>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
