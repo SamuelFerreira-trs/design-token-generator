@@ -248,6 +248,19 @@ export default function DesignTokenGenerator() {
     }
   }, [])
 
+  useEffect(() => {
+    const styleTag = document.getElementById("design-tokens") || document.createElement("style")
+    styleTag.id = "design-tokens"
+    document.head.appendChild(styleTag)
+
+    const rootStyles = Object.entries(tokens).reduce((acc, [key, value]) => {
+      const cssVarName = `--${key}`
+      return `${acc}${cssVarName}: ${value};`
+    }, "")
+
+    styleTag.innerHTML = `:root {${rootStyles}}`
+  }, [tokens])
+
   const updateToken = (tokenName: string, value: string) => {
     setTokens((prev) => ({
       ...prev,
