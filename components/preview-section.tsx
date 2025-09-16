@@ -17,7 +17,7 @@ export function PreviewSection({ tokens }: PreviewSectionProps) {
           Título Principal
         </h1>
         <p className="mt-4 text-white text-[var(--font-body-base-size)]">Subtítulo da sua landing page</p>
-        <Button className="mt-6 text-white bg-[var(--action-primary-default)] hover:bg-[var(--action-primary-hover)] rounded-[var(--border-radius-2)]">
+        <Button className="mt-6 text-[var(--button-text)] bg-[var(--action-primary-default)] hover:bg-[var(--action-primary-hover)] rounded-[var(--border-radius-2)]">
           Call to Action
         </Button>
       </div>
@@ -80,11 +80,16 @@ export function PreviewSection({ tokens }: PreviewSectionProps) {
         </CardHeader>
         <CardContent>
           <div className="flex flex-wrap gap-4">
-            <Button className="bg-[var(--action-primary-default)] hover:bg-[var(--action-primary-hover)] rounded-[var(--border-radius-2)]">
+            <Button className="text-[var(--button-text)] bg-[var(--action-primary-default)] hover:bg-[var(--action-primary-hover)] rounded-[var(--border-radius-2)]">
               Primário
             </Button>
-            <Button className="bg-[var(--action-primary-hover)] rounded-[var(--border-radius-2)]">Hover</Button>
-            <Button disabled className="bg-[var(--action-disabled)] rounded-[var(--border-radius-2)]">
+            <Button className="text-[var(--button-text)] bg-[var(--action-primary-hover)] rounded-[var(--border-radius-2)]">
+              Hover
+            </Button>
+            <Button
+              disabled
+              className="text-[var(--button-text)] bg-[var(--action-disabled)] rounded-[var(--border-radius-2)]"
+            >
               Desabilitado
             </Button>
           </div>
