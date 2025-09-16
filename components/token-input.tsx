@@ -64,20 +64,25 @@ export function TokenInput({ tokenName, value, onChange }: TokenInputProps) {
   if (isTypographyToken) {
     return (
       <div className="space-y-3 p-3 border rounded-lg bg-muted/30">
-        <Label htmlFor={tokenName} className="text-sm font-medium flex items-center gap-2">
+        <Label htmlFor={tokenName} className="text-sm font-medium flex items-center gap-3">
           {isColorToken ? (
-            <div className="w-4 h-4 rounded border border-border" style={{ backgroundColor: value || "#000000" }} />
+            <div
+              className="w-6 h-6 rounded border border-border shadow-sm"
+              style={{ backgroundColor: value || "#6366F1" }}
+            />
           ) : (
-            <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+            <div className="w-6 h-6 bg-blue-500 rounded shadow-sm flex items-center justify-center">
+              <span className="text-white text-xs font-bold">T</span>
+            </div>
           )}
-          {tokenName}
+          <span className="text-foreground">{tokenName}</span>
         </Label>
         <Input
           id={tokenName}
           value={value}
           onChange={handleTextChange}
-          placeholder={isColorToken ? "#000000" : getPlaceholderText()}
-          className={`text-sm ${isColorToken ? "font-mono" : "font-mono"}`}
+          placeholder={isColorToken ? "#6366F1" : getPlaceholderText()}
+          className={`text-sm ${isColorToken ? "font-mono" : "font-mono"} bg-background`}
         />
         {value && (
           <div className="text-xs text-muted-foreground p-2 bg-background rounded border">
@@ -161,7 +166,7 @@ export function TokenInput({ tokenName, value, onChange }: TokenInputProps) {
           id={tokenName}
           value={value}
           onChange={handleTextChange}
-          placeholder={isColorToken ? "#000000" : getPlaceholderText()}
+          placeholder={isColorToken ? "#6366F1" : getPlaceholderText()}
           className={`text-sm ${isColorToken ? "font-mono flex-1" : "flex-1"}`}
         />
       </div>
