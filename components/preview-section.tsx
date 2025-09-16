@@ -16,7 +16,7 @@ export function PreviewSection({ tokens }: PreviewSectionProps) {
         <h1 className="text-(--text-h1) text-(--font-h1-size) font-(--font-h1-weight) leading-(--font-h1-height) tracking-(--font-h1-spacing) font-(--font-family-heading)">
           Título Principal
         </h1>
-        <p className="mt-4 text-(--text-tagline-md) text-(--font-tagline-md-size)">Subtítulo da sua landing page</p>
+        <p className="mt-4 text-(--text-body-base) text-(--text-body-base)">Subtítulo da sua landing page</p>
         <Button className="mt-6 text-white bg-(--action-primary-default) hover:bg-(--action-primary-hover) rounded-(--border-radius-2)">
           Call to Action
         </Button>
