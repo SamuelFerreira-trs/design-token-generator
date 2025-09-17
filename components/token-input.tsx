@@ -27,6 +27,8 @@ export function TokenInput({ tokenName, value, onChange }: TokenInputProps) {
   const [isOpen, setIsOpen] = useState(false)
   const isColor = useMemo(() => isColorToken(tokenName), [tokenName])
 
+  const safeValue = value || ""
+
   const handleColorChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     onChange(e.target.value)
   }
@@ -49,7 +51,7 @@ export function TokenInput({ tokenName, value, onChange }: TokenInputProps) {
                 variant="outline"
                 size="sm"
                 className="w-12 h-10 p-0 border-2 relative overflow-hidden bg-transparent"
-                style={{ backgroundColor: value }}
+                style={{ backgroundColor: safeValue }}
                 aria-label={`Escolher cor para ${tokenName}`}
               ></Button>
             </PopoverTrigger>
@@ -62,7 +64,7 @@ export function TokenInput({ tokenName, value, onChange }: TokenInputProps) {
                   <input
                     id={`${tokenName}-picker`}
                     type="color"
-                    value={value}
+                    value={safeValue || "#000000"}
                     onChange={handleColorChange}
                     className="w-full h-10 rounded border border-input cursor-pointer"
                   />
@@ -73,7 +75,7 @@ export function TokenInput({ tokenName, value, onChange }: TokenInputProps) {
                   </Label>
                   <Input
                     id={`${tokenName}-text`}
-                    value={value}
+                    value={safeValue}
                     onChange={handleTextChange}
                     placeholder="#000000"
                     className="font-mono text-sm"
@@ -84,7 +86,7 @@ export function TokenInput({ tokenName, value, onChange }: TokenInputProps) {
           </Popover>
           <Input
             id={tokenName}
-            value={value}
+            value={safeValue}
             onChange={handleTextChange}
             placeholder="#000000"
             className="font-mono text-sm flex-1"
@@ -102,7 +104,7 @@ export function TokenInput({ tokenName, value, onChange }: TokenInputProps) {
       </Label>
       <Input
         id={tokenName}
-        value={value}
+        value={safeValue}
         onChange={handleTextChange}
         placeholder="Ex: 1rem"
         className="font-mono text-sm"
